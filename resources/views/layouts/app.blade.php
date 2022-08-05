@@ -1,4 +1,4 @@
-<html>
+<html lang="es">
     <head>
         {{--@yeild nos permitira llamar esta parte de la plantilla en otras vistas--}}
         <title>Academia - @yield('titulo')</title>
@@ -8,7 +8,7 @@
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
             <a class="navbar-brand " href="/cursos">
-                <img src="./../logo.png" alt="" width="60px" height="60px">
+                <img src={{ asset('logo.png') }} alt="" width="50px" height="50px">
             </a>
             <button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse" aria-controls="my-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
