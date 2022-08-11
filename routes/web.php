@@ -15,7 +15,9 @@ use App\Http\Controllers\CursoController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/docentes/create', function () {
+    return view('docentes.create');
+});
 Route::get('/', function () {
     return view('cursos.bienvenido');
 });
@@ -43,4 +45,5 @@ Route::get('/heladeria/{opc}',[HeladeriaController::class,'totalHelado']);
 Route::get('/precio/{a}',[ControladorPrecios::class,'descuento']);
 Route::get('/iva/{a}/{b}',[ControladorPrecios::class,'getIVA']);
 route::resource('cursos', CursoController::class);
+
 
