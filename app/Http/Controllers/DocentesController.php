@@ -49,7 +49,9 @@ class DocentesController extends Controller
        $docentico->titulo_universitario = $request-> input('titulo_universitario');
        $docentico->edad = $request-> input('edad');
        $docentico->fecha_contrato = $request-> input('fecha_contrato');
-       if($request->hasFile('imagen')){
+       if($request->hasFile('foto', 'doc_identidad')){
+        $docentico->foto = $request->file('foto')->store('public/docentes');
+        $docentico->doc_identidad = $request->file('doc_identidad')->store('public/docentes');
        }
        $docentico->save(); //con el comando save se registra en la bd
        return 'guardado exitosamente';
