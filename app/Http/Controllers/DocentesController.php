@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\storeDocenteRequest;
 use App\Models\Docentes;
 use Illuminate\Http\Request;
+
 
 class DocentesController extends Controller
 {
@@ -25,8 +27,7 @@ class DocentesController extends Controller
      */
     public function create()
     {
-        return view('docentes.create');
-
+        return view ('docentes.create');
     }
 
     /**
@@ -35,26 +36,27 @@ class DocentesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(request $request)
     {
-        $validacionDatos = $request->validate([
-            //'nombre'=>'required|max:10',
-            //'imagen'=>'required|image'
-        ]);
-        //se devuelve la peticion hecha al servidor
-       // return  $request->all();
-       $docentico = new Docentes(); //crear una instancia de la clase Curso
-       $docentico->nombres = $request-> input('nombres');
-       $docentico->apellidos = $request-> input('apellidos');
-       $docentico->titulo_universitario = $request-> input('titulo_universitario');
-       $docentico->edad = $request-> input('edad');
-       $docentico->fecha_contrato = $request-> input('fecha_contrato');
-       if($request->hasFile('foto', 'doc_identidad')){
-        $docentico->foto = $request->file('foto')->store('public/docentes');
-        $docentico->doc_identidad = $request->file('doc_identidad')->store('public/docentes');
-       }
-       $docentico->save(); //con el comando save se registra en la bd
-       return 'guardado exitosamente';
+
+        /*$validacionDatos = $request->validate([
+            'nombre'=>'required|max:10',
+            'imagen'=>'required|imagen'
+        ]);*/
+
+        $docentico = new Docentes();
+        $docentico->nombres = $request-> input('nombres');
+        $docentico->apellidos = $request-> input('apellidos');
+        $docentico->titulo_universitario = $request-> input('titulo_universitario');
+        $docentico->edad = $request-> input('edad');
+        $docentico->fecha_Contrato = $request-> input('fecha_contrato');
+        if($request->hasFile('foto', 'doc_identidad')){
+            $docentico->foto=$request->file('foto')->store('public/docentes');
+            $docentico->doc_identidad=$request->file('doc_identidad')->store('public/docentes');
+        }
+        $docentico->save();
+        return view('docentes.to_update');
+
     }
 
     /**
@@ -65,7 +67,8 @@ class DocentesController extends Controller
      */
     public function show($id)
     {
-
+        $docentico = Docentes::find($id);
+        return view('docentes.show' , compact('docentico'));
     }
 
     /**
@@ -76,7 +79,8 @@ class DocentesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $docentico = Docentes::find($id);
+        return view('docentes.edit' , compact('docentico'));
     }
 
     /**
@@ -88,7 +92,14 @@ class DocentesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $docentico = Docentes::find($id);
+        //return $request;
+        $docentico->fill($request->except('foto'));
+        if($request->hasFile('foto')){
+            $docentico->foto=$request->file('foto')->store('public/cursos');
+        }
+        $docentico->save();
+        return view('docentes.save');
     }
 
     /**
@@ -99,6 +110,16 @@ class DocentesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $docentico = Docentes::find($id);
+        //return $cursito;
+        $urlImagenBD = $docentico->foto;
+        //return $urlImagenBD;
+        $nombreImagen = str_replace('public/','\storage\\',$urlImagenBD);
+        //return $nombreImagen;
+        $rutaCompleta = public_path().$nombreImagen;
+        //return $rutaCompleta;
+        unlink($rutaCompleta);
+        $docentico->delete();
+        return view('docentes.remove');
     }
 }

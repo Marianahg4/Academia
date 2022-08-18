@@ -1,4 +1,4 @@
-<html lang="es">
+<html>
     <head>
         {{--@yeild nos permitira llamar esta parte de la plantilla en otras vistas--}}
         <title>Academia - @yield('titulo')</title>
@@ -6,9 +6,9 @@
     </head>
     <body>
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-            <a class="navbar-brand " href="/cursos">
-                <img src={{ asset('logo.png') }} alt="" width="50px" height="50px">
+        <nav class="navbar navbar-expand-lg navbar-light bg-secondary fixed-top">
+            <a class="navbar-brand " href="/docentes">
+                <img src="{{ asset('logo.png') }}" alt="" width="60px" height="60px">
             </a>
             <button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse" aria-controls="my-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -16,12 +16,17 @@
             <div id="my-nav" class="collapse navbar-collapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="/cursos/create">crear curso <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/cursos/nosotros">sobre nosotros <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/docentes/create">Agregar un nuevo Docente<span class="sr-only">(current)</span></a>
                     </li>
                 </ul>
+            </div>
+            <div id="my-nav" class="collapse navbar-collapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/docentes">sobre nosotros<span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+
             </div>
         </nav>
         <br>
@@ -35,4 +40,3 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
     </body>
 </html>
-
