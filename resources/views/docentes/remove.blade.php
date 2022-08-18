@@ -8,7 +8,7 @@
 <br>
 
 <div class="alert alert-danger" role="alert">
-    Eliminado Corractamente
+    Eliminado Correctamente
 </div>
 
 @endsection

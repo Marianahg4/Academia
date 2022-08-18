@@ -52,4 +52,5 @@
         <br>
         <button class="btn btn-dark" type="submit">Guardar</button>
     </form>
+    
 @endsection

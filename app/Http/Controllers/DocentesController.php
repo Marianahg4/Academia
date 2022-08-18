@@ -99,7 +99,7 @@ class DocentesController extends Controller
             $docentico->foto=$request->file('foto')->store('public/cursos');
         }
         $docentico->save();
-        return view('docentes.save');
+        return view('docentes.show');
     }
 
     /**

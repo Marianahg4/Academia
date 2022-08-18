@@ -18,6 +18,8 @@
     <p>{{$docentico->titulo_universitario}}</p>
     <p>{{$docentico->edad}}</p>
     <p>{{$docentico->fecha_contrato}}</p>
+
+
     <a href="/docentes/{{$docentico->id}}/edit" class="btn btn-success">Actualizar Información</a>
 
     <br>
@@ -29,3 +31,5 @@
         <button type="submit" class="btn btn-danger">Eliminar Docente</button>
     </form>
 </div>
+
+@endsection

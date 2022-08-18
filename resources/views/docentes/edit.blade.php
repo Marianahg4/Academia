@@ -45,3 +45,5 @@
         </div>
         <button class="btn btn-dark" type="submit">Actualizar</button>
 </form>
+
+@endsection
